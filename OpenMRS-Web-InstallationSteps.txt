@@ -1,0 +1,23 @@
+---------------------Download JDK ------------------------------------------
+jdk-8u211-linux-x64.tar.gz # https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+----------------------------------------------------------------------------------------------
+Download 'apache-tomcat-8.5.40.zip' - https://tomcat.apache.org/download-80.cgi
+cd /opt
+yum install unzip
+unzip apache-tomcat-8.5.40.zip
+mv apache-tomcat-8.5.40 tomcat 
+cd tomcat/bin
+chmod 0755 *.sh
+./version.sh
+./startup.sh
+----------------------------------Copy war file into Tomcat App server -------------------------
+cp /openmrsapp/openmrs.war /opt/tomcat/webapps/
+./shutdown.sh
+./startup.sh
+-------------------------------------Copy OpenMRS user interface module -------------------------
+cd /root/.OpenMRS/modules
+wget https://dl.bintray.com/openmrs/omod/legacyui-1.4.0.omod
+cd /opt/tomcat/bin
+./shutdown.sh
+./start.sh
+------------------------------------------------End----------------------------------------------

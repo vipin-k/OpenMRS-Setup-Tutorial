@@ -1,0 +1,19 @@
+yum install wget
+wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+rpm -ivh mysql57-community-release-el7-11.noarch.rpm
+sudo yum install -y mysql-server
+sudo systemctl status mysqld
+sudo systemctl start mysqld
+grep 'temporary password' /var/log/mysqld.log
+vi /etc/my.cnf
+validate_password_policy=LOW (add this line)
+sudo systemctl restart mysqld
+sudo systemctl status mysqld
+mysql_secure_installation
+mysql -u root -p
+Enter password: <enter password>
+GRANT ALL PRIVILEGES ON '%'.* TO 'root'@'192.168.10.10' IDENTIFIED BY 'Vagrant@2019' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+exit
+sudo systemctl restart mysqld
+sudo systemctl status mysqld
